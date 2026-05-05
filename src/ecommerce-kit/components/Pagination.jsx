@@ -2,8 +2,8 @@ import { Button, Stack, Typography } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-// Simple previous/next pagination control.
-// Keep the state in the parent with usePagination so the parent can scroll or fetch data.
+// Use this as a simple previous/next pagination control.
+// Keep the state in your parent with usePagination so you can scroll or fetch data.
 export function Pagination({ currentPage, pageCount, onPageChange }) {
   if (pageCount <= 1) return null;
 

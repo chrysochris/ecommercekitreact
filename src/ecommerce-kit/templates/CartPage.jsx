@@ -11,8 +11,8 @@ import {
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-// Full cart and checkout template.
-// The parent owns checkoutStep so it can sync the step with routing if needed.
+// Use this full cart and checkout template when you need a complete purchase flow.
+// Keep checkoutStep in your parent so you can sync the step with routing if needed.
 export function CartPage({
   checkoutStep = 1,
   onCheckoutStepChange,
@@ -25,7 +25,7 @@ export function CartPage({
 }) {
   const discount = cartTotal * 0.2;
   const deliveryFee = cartProducts.length ? 15 : 0;
-  // The sample discount/fee logic is here for demo purposes; replace with real business rules.
+  // Replace this sample discount/fee logic with your real business rules.
   const total = Math.max(0, cartTotal - discount + deliveryFee);
 
   const goBack = () => onCheckoutStepChange?.(Math.max(1, checkoutStep - 1));
@@ -61,7 +61,7 @@ export function CartPage({
       )}
 
       {checkoutStep === 1 && (
-        // Step 1: cart line items plus order summary.
+        // Use step 1 for cart line items plus the order summary.
         <Box sx={cartGridSx}>
           <Box>
             <Stack direction="row" justifyContent="space-between" sx={{ mb: 2 }}>
@@ -112,7 +112,7 @@ export function CartPage({
       )}
 
       {checkoutStep === 2 && (
-        // Step 2: checkout form plus the same order summary.
+        // Use step 2 for the checkout form plus the same order summary.
         <Box sx={{ ...cartGridSx, gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1.2fr) 0.8fr" }, mt: { xs: 3, md: 3 } }}>
           <CheckoutDetailsForm />
           <OrderSummary
@@ -128,7 +128,7 @@ export function CartPage({
       )}
 
       {checkoutStep === 3 && (
-        // Step 3: order completion state.
+        // Use step 3 for the order completion state.
         <OrderComplete
           total={total}
           onContinue={() => {
@@ -176,7 +176,7 @@ function OrderSummary({
 }
 
 function CheckoutDetailsForm() {
-  // This form is presentational. Wire fields to your form library or backend checkout.
+  // Wire this presentational form to your form library or backend checkout.
   return (
     <Box sx={cartPanelSx}>
       <Typography variant="h5" sx={{ fontWeight: 900, mb: 3 }}>

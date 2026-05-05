@@ -1,7 +1,7 @@
-// Sample catalog used by the demo and docs.
-// Replace this file with API/CMS data or your own static product list.
-// Required fields: id, name, category, price, sizes, colors, image.
-// Optional fields: images, sku, tags.
+// Use this sample catalog to preview the demo and understand the product shape.
+// Replace this file with your API/CMS data or your own static product list.
+// Include these required fields: id, name, category, price, sizes, colors, image.
+// Add these optional fields when you need them: images, sku, tags.
 export const sampleProducts = [
   {
     id: "minimal-tee-black",

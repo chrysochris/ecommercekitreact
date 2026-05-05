@@ -6,7 +6,7 @@ const initialFilters = {
   colors: [],
 };
 
-// Used by each multi-select filter group.
+// Use this helper inside each multi-select filter group.
 function toggleValue(values, value) {
   return values.includes(value)
     ? values.filter((item) => item !== value)
@@ -20,7 +20,7 @@ export function useProductFilters(products, defaultFilters = initialFilters) {
   });
 
   const filteredProducts = useMemo(() => {
-    // Empty filter arrays mean "show all" for that filter group.
+    // Use empty filter arrays to mean "show all" for that filter group.
     return products.filter((product) => {
       const matchesCategory =
         filters.categories.length === 0 ||
@@ -39,7 +39,7 @@ export function useProductFilters(products, defaultFilters = initialFilters) {
   }, [filters, products]);
 
   const toggleFilter = (filterName, value) => {
-    // filterName should be one of: "categories", "sizes", or "colors".
+    // Pass one of these filter names: "categories", "sizes", or "colors".
     setFilters((currentFilters) => ({
       ...currentFilters,
       [filterName]: toggleValue(currentFilters[filterName], value),

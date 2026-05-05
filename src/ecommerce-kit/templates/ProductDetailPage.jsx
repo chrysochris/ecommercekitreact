@@ -12,6 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -26,7 +27,7 @@ const swatchColors = {
   White: "#f7f4ed",
 };
 
-// Product detail supports a single product.image or a product.images gallery.
+// Provide either a single product.image or a product.images gallery for this page.
 function getProductImages(product) {
   return product.images?.length ? product.images : [product.image];
 }
@@ -46,8 +47,16 @@ export function ProductDetailPage({
   const [quantity, setQuantity] = useState(1);
   const liked = isWishlisted?.(product.id);
 
+  const goToImage = (direction) => {
+    if (images.length < 2) return;
+
+    setActiveImageIndex(
+      (currentIndex) => (currentIndex + direction + images.length) % images.length
+    );
+  };
+
   const addSelectedProductToCart = () => {
-    // Match the cart line shape used by useCart.
+    // Match the cart line shape that useCart expects.
     onAddToCart?.({
       productId: product.id,
       color: selectedColor,
@@ -76,29 +85,77 @@ export function ProductDetailPage({
             sx={detailImageSx}
           />
           {images.length > 1 && (
-            // Dots can be replaced with thumbnails if the buyer wants a richer gallery.
-            <Stack direction="row" gap={1} sx={imageDotsSx}>
-              {images.map((image, index) => (
-                <Box
-                  key={`${image}-${index}`}
-                  component="button"
-                  onClick={() => setActiveImageIndex(index)}
-                  aria-label={`Show ${product.name} image ${index + 1}`}
-                  sx={{
-                    width: 9,
-                    height: 9,
-                    p: 0,
-                    borderRadius: "50%",
-                    border: "1px solid white",
-                    bgcolor:
-                      activeImageIndex === index
-                        ? "#20201d"
-                        : "rgba(255,255,255,0.8)",
-                    cursor: "pointer",
-                  }}
-                />
-              ))}
-            </Stack>
+            <>
+              <IconButton
+                aria-label="Previous product image"
+                onClick={() => goToImage(-1)}
+                sx={{
+                  position: "absolute",
+                  left: { xs: 10, md: 14 },
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  width: { xs: 32, md: 38 },
+                  height: { xs: 32, md: 38 },
+                  borderRadius: 999,
+                  bgcolor: "rgba(255, 255, 255, 0.86)",
+                  color: "#20201d",
+                  boxShadow: "0 8px 24px rgba(32, 32, 29, 0.12)",
+                  "&:hover": {
+                    bgcolor: "#20201d",
+                    color: "white",
+                  },
+                }}
+              >
+                <ArrowBackIcon fontSize="small" />
+              </IconButton>
+
+              <IconButton
+                aria-label="Next product image"
+                onClick={() => goToImage(1)}
+                sx={{
+                  position: "absolute",
+                  right: { xs: 10, md: 14 },
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  width: { xs: 32, md: 38 },
+                  height: { xs: 32, md: 38 },
+                  borderRadius: 999,
+                  bgcolor: "rgba(255, 255, 255, 0.86)",
+                  color: "#20201d",
+                  boxShadow: "0 8px 24px rgba(32, 32, 29, 0.12)",
+                  "&:hover": {
+                    bgcolor: "#20201d",
+                    color: "white",
+                  },
+                }}
+              >
+                <ArrowForwardIcon fontSize="small" />
+              </IconButton>
+
+              {/* Replace dots with thumbnails if you want a richer gallery. */}
+              <Stack direction="row" gap={1} sx={imageDotsSx}>
+                {images.map((image, index) => (
+                  <Box
+                    key={`${image}-${index}`}
+                    component="button"
+                    onClick={() => setActiveImageIndex(index)}
+                    aria-label={`Show ${product.name} image ${index + 1}`}
+                    sx={{
+                      width: 9,
+                      height: 9,
+                      p: 0,
+                      borderRadius: "50%",
+                      border: "1px solid white",
+                      bgcolor:
+                        activeImageIndex === index
+                          ? "#20201d"
+                          : "rgba(255,255,255,0.8)",
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+              </Stack>
+            </>
           )}
         </Box>
 
@@ -236,7 +293,7 @@ export function ProductDetailPage({
           </Stack>
 
           <Box sx={{ mt: 4 }}>
-            {/* Replace these policy strings with store-specific content. */}
+            {/* Replace these policy strings with your store-specific content. */}
             <ProductInfoAccordion
               title="Shipping"
               body="Use this accordion for delivery times, carriers, regions, and shipping costs. Replace the sample text with your store policy."

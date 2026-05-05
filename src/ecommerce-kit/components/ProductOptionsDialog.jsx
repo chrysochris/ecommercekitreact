@@ -26,13 +26,13 @@ const colorMap = {
   White: "#f7f4ed",
 };
 
-// Products can provide a single image or an images[] gallery.
+// Provide either a single product.image or an images[] gallery for each product.
 function getProductImages(product) {
   return product.images?.length ? product.images : [product.image];
 }
 
-// Quick-view modal used by ProductCard.
-// It handles gallery navigation, variant selection, wishlist, quantity, and add-to-cart.
+// Use this quick-view modal from ProductCard or your own product trigger.
+// It gives you gallery navigation, variant selection, wishlist, quantity, and add-to-cart.
 export function ProductOptionsDialog({
   open,
   product,
@@ -54,7 +54,7 @@ export function ProductOptionsDialog({
   useEffect(() => {
     if (!open) return;
 
-    // Reset selections whenever a new product is opened.
+    // Reset selections whenever you open a new product.
     setActiveProduct(product);
     setActiveImageIndex(0);
     setSelectedSize(product.sizes[0] ?? "");
@@ -97,7 +97,7 @@ export function ProductOptionsDialog({
   };
 
   const handleSubmit = () => {
-    // Require the variant options before creating a cart line.
+    // Require variant options before you create a cart line.
     const nextErrors = {
       size: selectedSize ? "" : "Select a size",
       color: selectedColor ? "" : "Select a color",

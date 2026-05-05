@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { useLocalStorage } from "./useLocalStorage.js";
 
-// Cart items are stored as product option lines: productId + size + color + quantity.
-// Pass the product array so this hook can calculate totals from product prices.
+// Store cart items as product option lines: productId + size + color + quantity.
+// Pass your product array so this hook can calculate totals from product prices.
 export function useCart(products = [], storageKey = "ecommerce-kit:cart") {
   const [cartItems, setCartItems] = useLocalStorage(storageKey, []);
 
@@ -13,7 +13,7 @@ export function useCart(products = [], storageKey = "ecommerce-kit:cart") {
 
   const addToCart = ({ productId, size, color, quantity = 1 }) => {
     setCartItems((currentItems) => {
-      // Merge identical product/size/color lines instead of duplicating them.
+      // Merge identical product/size/color lines so you do not duplicate cart rows.
       const existingIndex = currentItems.findIndex(
         (item) =>
           item.productId === productId &&
@@ -47,7 +47,7 @@ export function useCart(products = [], storageKey = "ecommerce-kit:cart") {
   };
 
   const updateCartItemQuantity = ({ productId, size, color, quantity }) => {
-    // Quantity below 1 means the user intends to remove the line item.
+    // Treat quantity below 1 as a request to remove the line item.
     if (quantity < 1) {
       removeFromCart({ productId, size, color });
       return;
@@ -73,7 +73,7 @@ export function useCart(products = [], storageKey = "ecommerce-kit:cart") {
     );
 
   const cartTotal = cartItems.reduce((total, item) => {
-    // Missing products are ignored so deleted/changed mock data does not break the cart.
+    // Ignore missing products so changed or deleted product data does not break your cart.
     const product = productById.get(item.productId);
     return product ? total + product.price * item.quantity : total;
   }, 0);

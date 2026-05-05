@@ -14,8 +14,8 @@ import { Filters } from "../components/Filters.jsx";
 import { Pagination } from "../components/Pagination.jsx";
 import { ProductGrid } from "../components/ProductGrid.jsx";
 
-// Full product listing template composed from Filters, ProductGrid, and Pagination.
-// Keep filter/cart/wishlist state in the parent and pass handlers in through props.
+// Use this full product listing template to compose Filters, ProductGrid, and Pagination.
+// Keep filter/cart/wishlist state in your parent and pass handlers through props.
 export function ProductListingPage({
   title = "Products",
   eyebrow = "Storefront preview",
@@ -73,7 +73,7 @@ export function ProductListingPage({
       </Stack>
 
       {isMobile && (
-        // On small screens filters move into a modal to preserve product grid space.
+        // Move filters into a modal on small screens to preserve product grid space.
         <Button
           variant="contained"
           startIcon={<TuneIcon />}

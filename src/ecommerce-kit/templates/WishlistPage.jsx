@@ -1,8 +1,8 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { ProductGrid } from "../components/ProductGrid.jsx";
 
-// Full wishlist page template.
-// Pass already-filtered wishlist products; this component focuses only on display/actions.
+// Use this full wishlist page template when you need a ready-made saved-products view.
+// Pass your already-filtered wishlist products so this page can focus on display/actions.
 export function WishlistPage({
   products,
   isWishlisted,
@@ -42,7 +42,7 @@ export function WishlistPage({
       </Stack>
 
       {products.length === 0 ? (
-        // Empty state is part of the template so buyers get a complete page flow.
+        // Keep this empty state so your buyers get a complete page flow.
         <EmptyState
           title="No wishlist products yet"
           body="Save a product from the storefront demo and it will appear here."

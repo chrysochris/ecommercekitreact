@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-// Small wrapper around localStorage that keeps React state and storage in sync.
-// It also avoids crashing in environments where `window` is unavailable.
+// Use this small wrapper to keep React state and localStorage in sync.
+// It helps you avoid crashes in environments where `window` is unavailable.
 export function useLocalStorage(key, initialValue) {
   const [value, setValue] = useState(() => {
     if (typeof window === "undefined") return initialValue;
@@ -17,7 +17,7 @@ export function useLocalStorage(key, initialValue) {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Persist every state change so wishlist/cart survive page refreshes.
+    // Persist every state change so your wishlist/cart survive page refreshes.
     window.localStorage.setItem(key, JSON.stringify(value));
   }, [key, value]);
 

@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 
-// Generic pagination helper for product lists or any other array of items.
+// Use this pagination helper for product lists or any other array of items.
 export function usePagination(items, itemsPerPage = 8) {
   const [currentPage, setCurrentPage] = useState(1);
   const pageCount = Math.max(1, Math.ceil(items.length / itemsPerPage));
 
   useEffect(() => {
-    // If filters reduce the number of pages, keep the current page valid.
+    // Keep the current page valid when filters reduce the number of pages.
     setCurrentPage((page) => Math.min(page, pageCount));
   }, [pageCount]);
 

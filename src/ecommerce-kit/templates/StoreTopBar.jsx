@@ -9,8 +9,8 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
-// Reusable storefront navigation bar.
-// The parent controls navigation through onNavigate, so this works with routers or local state.
+// Use this reusable navigation bar at the top of your storefront pages.
+// Control navigation from your parent through onNavigate, router links, or local state.
 export function StoreTopBar({
   storeName = "Atelier Store",
   activeView = "products",
@@ -49,7 +49,7 @@ export function StoreTopBar({
         </Box>
 
         <Stack direction="row" alignItems="center" gap={{ xs: 1, sm: 2 }}>
-          {/* Text links are configurable here; icons stay visible on mobile. */}
+          {/* Configure your text links here; the icons stay visible on mobile. */}
           {[
             ["products", "Products"],
             ["wishlist", "Wishlist"],

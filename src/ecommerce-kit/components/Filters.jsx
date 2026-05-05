@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-// One accordion group for a multi-select filter section.
-// Reuse it for categories, sizes, colors, or any custom option group.
+// Use one accordion group for each multi-select filter section.
+// Reuse this pattern for categories, sizes, colors, or your own option group.
 function FilterGroup({ title, options, selectedValues, onChange }) {
   return (
     <Accordion

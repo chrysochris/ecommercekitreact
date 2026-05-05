@@ -16,8 +16,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { ProductOptionsDialog } from "./ProductOptionsDialog.jsx";
 
-// Reusable product card.
-// The card can either open a custom product page via onProductClick or open quick view.
+// Use this reusable card for catalog, wishlist, and related-products grids.
+// Pass onProductClick to open your own product page, or let the card open quick view.
 export function ProductCard({
   product,
   currency = "$",
@@ -35,8 +35,8 @@ export function ProductCard({
       ? Boolean(isWishlisted(product.id))
       : Boolean(isWishlisted);
 
-  // Product image click is intentionally separate from the Quick view button.
-  // Pass onProductClick when you want a full product page.
+  // Keep image click separate from the Quick view button so you can support both flows.
+  // Pass onProductClick when you want the image to open your full product page.
   const handleCardImageClick = () => {
     if (onProductClick) {
       onProductClick(product);

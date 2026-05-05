@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import { ProductCard } from "./ProductCard.jsx";
 
-// Responsive grid wrapper for ProductCard.
-// Pass allProducts when quick-view next/previous should use the full filtered list.
+// Use this responsive wrapper whenever you render multiple ProductCard components.
+// Pass allProducts when you want quick-view next/previous to use the full filtered list.
 export function ProductGrid({
   products,
   allProducts = products,
