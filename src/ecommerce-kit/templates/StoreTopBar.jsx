@@ -76,12 +76,12 @@ export function StoreTopBar({
             </Button>
           ))}
 
-          <IconButton onClick={() => onNavigate?.("wishlist")}>
+          <IconButton onClick={() => onNavigate?.("wishlist")} sx={topBarIconButtonSx}>
             <Badge badgeContent={wishlistCount} color="error">
               <FavoriteBorderIcon />
             </Badge>
           </IconButton>
-          <IconButton onClick={() => onNavigate?.("cart")}>
+          <IconButton onClick={() => onNavigate?.("cart")} sx={topBarIconButtonSx}>
             <Badge badgeContent={cartQuantity} color="primary">
               <ShoppingBagOutlinedIcon />
             </Badge>
@@ -102,4 +102,10 @@ const storeNameSx = {
   fontWeight: 900,
   letterSpacing: 0,
   cursor: "pointer",
+};
+
+const topBarIconButtonSx = {
+  "&:hover": {
+    bgcolor: "#f4f2ec",
+  },
 };

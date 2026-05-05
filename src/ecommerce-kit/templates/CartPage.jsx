@@ -8,6 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 // Full cart and checkout template.
@@ -48,7 +49,12 @@ export function CartPage({
 
       {checkoutStep > 1 && (
         <Box sx={{ display: "flex", justifyContent: "flex-start", mt: 3 }}>
-          <Button variant="outlined" onClick={goBack} sx={outlineButtonSx}>
+          <Button
+            variant="outlined"
+            startIcon={<ArrowBackIcon />}
+            onClick={goBack}
+            sx={outlineButtonSx}
+          >
             Back to {checkoutStep === 2 ? "cart" : "checkout details"}
           </Button>
         </Box>

@@ -120,7 +120,7 @@ export function ProductCard({
               boxShadow: 1,
               color: productIsWishlisted ? "#c24155" : "#20201d",
               "&:hover": {
-                bgcolor: "rgba(32,32,29,0.08)",
+                bgcolor: productIsWishlisted ? "#fff1f3" : "#f4f2ec",
                 color: productIsWishlisted ? "#9f2f42" : "#20201d",
               },
             }}

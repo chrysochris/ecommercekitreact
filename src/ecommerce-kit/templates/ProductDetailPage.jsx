@@ -11,6 +11,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -57,7 +58,12 @@ export function ProductDetailPage({
 
   return (
     <Container maxWidth="xl" sx={{ py: { xs: 3, md: 5 } }}>
-      <Button variant="outlined" onClick={onBack} sx={outlineButtonSx}>
+      <Button
+        variant="outlined"
+        startIcon={<ArrowBackIcon />}
+        onClick={onBack}
+        sx={outlineButtonSx}
+      >
         Back to catalog
       </Button>
 
@@ -180,7 +186,10 @@ export function ProductDetailPage({
                 height: 48,
                 border: "1px solid #e4ded4",
                 color: liked ? "#c24155" : "#20201d",
-                "&:hover": { bgcolor: "rgba(32,32,29,0.08)" },
+                "&:hover": {
+                  bgcolor: liked ? "#fff1f3" : "#f4f2ec",
+                  color: liked ? "#9f2f42" : "#20201d",
+                },
               }}
             >
               {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
@@ -198,7 +207,7 @@ export function ProductDetailPage({
                 fontWeight: 900,
                 "&:hover": {
                   borderColor: liked ? "#9f2f42" : "#34342f",
-                  bgcolor: "rgba(32,32,29,0.08)",
+                  bgcolor: liked ? "#fff1f3" : "#f4f2ec",
                 },
               }}
             >
